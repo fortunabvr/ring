@@ -22,6 +22,8 @@ printenv
 if [[ ! "$TARGET_X" =~ ^(x86_64-|i686-) ]]; then
   ! command -v cross 1>/dev/null && cargo install cross
   CARGO="cross"
+  echo -e "[target.$TARGET_X]\nrunner = \"qemu-system\"" > Cross.toml
+  cat Cross.toml
 else
   CARGO="cargo"
 
