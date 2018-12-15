@@ -154,16 +154,6 @@ def format_entry(os, target, compiler, rust, mode, features):
         sources_with_dups = sum([get_sources_for_package(p) for p in packages],[])
         sources = sorted(list(set(sources_with_dups)))
         services = sorted(list(set(get_services_for_arch(arch))))
-    else:
-        services = []
-
-    # TODO: Use trusty for everything?
-    if arch in ["aarch64", "arm", "armv7"]:
-        template += """
-      dist: trusty
-      sudo: required"""
-
-    if sys == "linux":
         if services:
             template += entry_services_template
         if packages:
@@ -171,6 +161,7 @@ def format_entry(os, target, compiler, rust, mode, features):
         if sources:
             template += entry_sources_template
     else:
+        services = []
         packages = []
         sources = []
 

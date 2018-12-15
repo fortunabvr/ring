@@ -78,16 +78,12 @@ matrix:
     - env: TARGET_X=armv7-linux-androideabi  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: stable
       os: linux
-      dist: trusty
-      sudo: required
       services:
         - docker
 
     - env: TARGET_X=armv7-linux-androideabi  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
       rust: stable
       os: linux
-      dist: trusty
-      sudo: required
       services:
         - docker
 
@@ -144,16 +140,12 @@ matrix:
     - env: TARGET_X=aarch64-unknown-linux-gnu  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: stable
       os: linux
-      dist: trusty
-      sudo: required
       services:
         - docker
 
     - env: TARGET_X=aarch64-unknown-linux-gnu  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
       rust: stable
       os: linux
-      dist: trusty
-      sudo: required
       services:
         - docker
 
@@ -232,16 +224,12 @@ matrix:
     - env: TARGET_X=arm-unknown-linux-gnueabihf  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: stable
       os: linux
-      dist: trusty
-      sudo: required
       services:
         - docker
 
     - env: TARGET_X=arm-unknown-linux-gnueabihf  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
       rust: stable
       os: linux
-      dist: trusty
-      sudo: required
       services:
         - docker
 
@@ -306,16 +294,12 @@ matrix:
     - env: TARGET_X=armv7-linux-androideabi  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: nightly
       os: linux
-      dist: trusty
-      sudo: required
       services:
         - docker
 
     - env: TARGET_X=armv7-linux-androideabi  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
       rust: nightly
       os: linux
-      dist: trusty
-      sudo: required
       services:
         - docker
 
@@ -372,16 +356,12 @@ matrix:
     - env: TARGET_X=aarch64-unknown-linux-gnu  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: nightly
       os: linux
-      dist: trusty
-      sudo: required
       services:
         - docker
 
     - env: TARGET_X=aarch64-unknown-linux-gnu  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
       rust: nightly
       os: linux
-      dist: trusty
-      sudo: required
       services:
         - docker
 
@@ -460,16 +440,12 @@ matrix:
     - env: TARGET_X=arm-unknown-linux-gnueabihf  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: nightly
       os: linux
-      dist: trusty
-      sudo: required
       services:
         - docker
 
     - env: TARGET_X=arm-unknown-linux-gnueabihf  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
       rust: nightly
       os: linux
-      dist: trusty
-      sudo: required
       services:
         - docker
 
@@ -534,16 +510,12 @@ matrix:
     - env: TARGET_X=armv7-linux-androideabi  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: beta
       os: linux
-      dist: trusty
-      sudo: required
       services:
         - docker
 
     - env: TARGET_X=armv7-linux-androideabi  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
       rust: beta
       os: linux
-      dist: trusty
-      sudo: required
       services:
         - docker
 
@@ -600,16 +572,12 @@ matrix:
     - env: TARGET_X=aarch64-unknown-linux-gnu  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: beta
       os: linux
-      dist: trusty
-      sudo: required
       services:
         - docker
 
     - env: TARGET_X=aarch64-unknown-linux-gnu  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
       rust: beta
       os: linux
-      dist: trusty
-      sudo: required
       services:
         - docker
 
@@ -688,16 +656,12 @@ matrix:
     - env: TARGET_X=arm-unknown-linux-gnueabihf  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: beta
       os: linux
-      dist: trusty
-      sudo: required
       services:
         - docker
 
     - env: TARGET_X=arm-unknown-linux-gnueabihf  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
       rust: beta
       os: linux
-      dist: trusty
-      sudo: required
       services:
         - docker
 
