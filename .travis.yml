@@ -75,31 +75,21 @@ matrix:
       os: osx
       osx_image: xcode10.1
 
-    - env: TARGET_X=armv7-linux-androideabi CC_X=arm-linux-androideabi-clang FEATURES_X= MODE_X=DEBUG KCOV=0
+    - env: TARGET_X=armv7-linux-androideabi  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: stable
       os: linux
       dist: trusty
       sudo: required
-      addons:
-        apt:
-          packages:
-            - expect
-            - openjdk-6-jre-headless
-          sources:
-            - ubuntu-toolchain-r-test
+      services:
+        - docker
 
-    - env: TARGET_X=armv7-linux-androideabi CC_X=arm-linux-androideabi-clang FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
+    - env: TARGET_X=armv7-linux-androideabi  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
       rust: stable
       os: linux
       dist: trusty
       sudo: required
-      addons:
-        apt:
-          packages:
-            - expect
-            - openjdk-6-jre-headless
-          sources:
-            - ubuntu-toolchain-r-test
+      services:
+        - docker
 
     - env: TARGET_X=x86_64-unknown-linux-gnu  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: stable
@@ -151,31 +141,21 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
 
-    - env: TARGET_X=aarch64-unknown-linux-gnu CC_X=aarch64-linux-gnu-gcc FEATURES_X= MODE_X=DEBUG KCOV=0
+    - env: TARGET_X=aarch64-unknown-linux-gnu  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: stable
       os: linux
       dist: trusty
       sudo: required
-      addons:
-        apt:
-          packages:
-            - gcc-aarch64-linux-gnu
-            - libc6-dev-arm64-cross
-          sources:
-            - ubuntu-toolchain-r-test
+      services:
+        - docker
 
-    - env: TARGET_X=aarch64-unknown-linux-gnu CC_X=aarch64-linux-gnu-gcc FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
+    - env: TARGET_X=aarch64-unknown-linux-gnu  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
       rust: stable
       os: linux
       dist: trusty
       sudo: required
-      addons:
-        apt:
-          packages:
-            - gcc-aarch64-linux-gnu
-            - libc6-dev-arm64-cross
-          sources:
-            - ubuntu-toolchain-r-test
+      services:
+        - docker
 
     - env: TARGET_X=i686-unknown-linux-gnu  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: stable
@@ -249,75 +229,65 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
 
-    - env: TARGET_X=arm-unknown-linux-gnueabihf CC_X=arm-linux-gnueabihf-gcc FEATURES_X= MODE_X=DEBUG KCOV=0
+    - env: TARGET_X=arm-unknown-linux-gnueabihf  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: stable
       os: linux
       dist: trusty
       sudo: required
-      addons:
-        apt:
-          packages:
-            - gcc-arm-linux-gnueabihf
-            - libc6-dev-armhf-cross
-          sources:
-            - ubuntu-toolchain-r-test
+      services:
+        - docker
 
-    - env: TARGET_X=arm-unknown-linux-gnueabihf CC_X=arm-linux-gnueabihf-gcc FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
+    - env: TARGET_X=arm-unknown-linux-gnueabihf  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
       rust: stable
       os: linux
       dist: trusty
       sudo: required
-      addons:
-        apt:
-          packages:
-            - gcc-arm-linux-gnueabihf
-            - libc6-dev-armhf-cross
-          sources:
-            - ubuntu-toolchain-r-test
+      services:
+        - docker
 
-    - env: TARGET_X=mips64-unknown-linux-gnuabi64 CC_X=mips64-linux-gnuabi64-gcc FEATURES_X= MODE_X=DEBUG KCOV=0
+    - env: TARGET_X=mips64-unknown-linux-gnuabi64  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: stable
       os: linux
       services:
         - docker
 
-    - env: TARGET_X=mips64-unknown-linux-gnuabi64 CC_X=mips64-linux-gnuabi64-gcc FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
+    - env: TARGET_X=mips64-unknown-linux-gnuabi64  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
       rust: stable
       os: linux
       services:
         - docker
 
-    - env: TARGET_X=mips64el-unknown-linux-gnuabi64 CC_X=mips64el-linux-gnuabi64-gcc  FEATURES_X= MODE_X=DEBUG KCOV=0
+    - env: TARGET_X=mips64el-unknown-linux-gnuabi64  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: stable
       os: linux
       services:
         - docker
 
-    - env: TARGET_X=mips64el-unknown-linux-gnuabi64 CC_X=mips64el-linux-gnuabi64-gcc  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
+    - env: TARGET_X=mips64el-unknown-linux-gnuabi64  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
       rust: stable
       os: linux
       services:
         - docker
 
-    - env: TARGET_X=mipsel-unknown-linux-gnu CC_X=mipsel-linux-gnu-gcc FEATURES_X= MODE_X=DEBUG KCOV=0
+    - env: TARGET_X=mipsel-unknown-linux-gnu  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: stable
       os: linux
       services:
         - docker
 
-    - env: TARGET_X=mipsel-unknown-linux-gnu CC_X=mipsel-linux-gnu-gcc FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
+    - env: TARGET_X=mipsel-unknown-linux-gnu  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
       rust: stable
       os: linux
       services:
         - docker
 
-    - env: TARGET_X=mips-unknown-linux-gnu CC_X=mips-linux-gnu-gcc FEATURES_X= MODE_X=DEBUG KCOV=0
+    - env: TARGET_X=mips-unknown-linux-gnu  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: stable
       os: linux
       services:
         - docker
 
-    - env: TARGET_X=mips-unknown-linux-gnu CC_X=mips-linux-gnu-gcc FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
+    - env: TARGET_X=mips-unknown-linux-gnu  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
       rust: stable
       os: linux
       services:
@@ -333,31 +303,21 @@ matrix:
       os: osx
       osx_image: xcode10.1
 
-    - env: TARGET_X=armv7-linux-androideabi CC_X=arm-linux-androideabi-clang FEATURES_X= MODE_X=DEBUG KCOV=0
+    - env: TARGET_X=armv7-linux-androideabi  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: nightly
       os: linux
       dist: trusty
       sudo: required
-      addons:
-        apt:
-          packages:
-            - expect
-            - openjdk-6-jre-headless
-          sources:
-            - ubuntu-toolchain-r-test
+      services:
+        - docker
 
-    - env: TARGET_X=armv7-linux-androideabi CC_X=arm-linux-androideabi-clang FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
+    - env: TARGET_X=armv7-linux-androideabi  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
       rust: nightly
       os: linux
       dist: trusty
       sudo: required
-      addons:
-        apt:
-          packages:
-            - expect
-            - openjdk-6-jre-headless
-          sources:
-            - ubuntu-toolchain-r-test
+      services:
+        - docker
 
     - env: TARGET_X=x86_64-unknown-linux-gnu  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: nightly
@@ -409,31 +369,21 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
 
-    - env: TARGET_X=aarch64-unknown-linux-gnu CC_X=aarch64-linux-gnu-gcc FEATURES_X= MODE_X=DEBUG KCOV=0
+    - env: TARGET_X=aarch64-unknown-linux-gnu  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: nightly
       os: linux
       dist: trusty
       sudo: required
-      addons:
-        apt:
-          packages:
-            - gcc-aarch64-linux-gnu
-            - libc6-dev-arm64-cross
-          sources:
-            - ubuntu-toolchain-r-test
+      services:
+        - docker
 
-    - env: TARGET_X=aarch64-unknown-linux-gnu CC_X=aarch64-linux-gnu-gcc FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
+    - env: TARGET_X=aarch64-unknown-linux-gnu  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
       rust: nightly
       os: linux
       dist: trusty
       sudo: required
-      addons:
-        apt:
-          packages:
-            - gcc-aarch64-linux-gnu
-            - libc6-dev-arm64-cross
-          sources:
-            - ubuntu-toolchain-r-test
+      services:
+        - docker
 
     - env: TARGET_X=i686-unknown-linux-gnu  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: nightly
@@ -507,75 +457,65 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
 
-    - env: TARGET_X=arm-unknown-linux-gnueabihf CC_X=arm-linux-gnueabihf-gcc FEATURES_X= MODE_X=DEBUG KCOV=0
+    - env: TARGET_X=arm-unknown-linux-gnueabihf  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: nightly
       os: linux
       dist: trusty
       sudo: required
-      addons:
-        apt:
-          packages:
-            - gcc-arm-linux-gnueabihf
-            - libc6-dev-armhf-cross
-          sources:
-            - ubuntu-toolchain-r-test
+      services:
+        - docker
 
-    - env: TARGET_X=arm-unknown-linux-gnueabihf CC_X=arm-linux-gnueabihf-gcc FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
+    - env: TARGET_X=arm-unknown-linux-gnueabihf  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
       rust: nightly
       os: linux
       dist: trusty
       sudo: required
-      addons:
-        apt:
-          packages:
-            - gcc-arm-linux-gnueabihf
-            - libc6-dev-armhf-cross
-          sources:
-            - ubuntu-toolchain-r-test
+      services:
+        - docker
 
-    - env: TARGET_X=mips64-unknown-linux-gnuabi64 CC_X=mips64-linux-gnuabi64-gcc FEATURES_X= MODE_X=DEBUG KCOV=0
+    - env: TARGET_X=mips64-unknown-linux-gnuabi64  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: nightly
       os: linux
       services:
         - docker
 
-    - env: TARGET_X=mips64-unknown-linux-gnuabi64 CC_X=mips64-linux-gnuabi64-gcc FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
+    - env: TARGET_X=mips64-unknown-linux-gnuabi64  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
       rust: nightly
       os: linux
       services:
         - docker
 
-    - env: TARGET_X=mips64el-unknown-linux-gnuabi64 CC_X=mips64el-linux-gnuabi64-gcc  FEATURES_X= MODE_X=DEBUG KCOV=0
+    - env: TARGET_X=mips64el-unknown-linux-gnuabi64  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: nightly
       os: linux
       services:
         - docker
 
-    - env: TARGET_X=mips64el-unknown-linux-gnuabi64 CC_X=mips64el-linux-gnuabi64-gcc  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
+    - env: TARGET_X=mips64el-unknown-linux-gnuabi64  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
       rust: nightly
       os: linux
       services:
         - docker
 
-    - env: TARGET_X=mipsel-unknown-linux-gnu CC_X=mipsel-linux-gnu-gcc FEATURES_X= MODE_X=DEBUG KCOV=0
+    - env: TARGET_X=mipsel-unknown-linux-gnu  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: nightly
       os: linux
       services:
         - docker
 
-    - env: TARGET_X=mipsel-unknown-linux-gnu CC_X=mipsel-linux-gnu-gcc FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
+    - env: TARGET_X=mipsel-unknown-linux-gnu  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
       rust: nightly
       os: linux
       services:
         - docker
 
-    - env: TARGET_X=mips-unknown-linux-gnu CC_X=mips-linux-gnu-gcc FEATURES_X= MODE_X=DEBUG KCOV=0
+    - env: TARGET_X=mips-unknown-linux-gnu  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: nightly
       os: linux
       services:
         - docker
 
-    - env: TARGET_X=mips-unknown-linux-gnu CC_X=mips-linux-gnu-gcc FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
+    - env: TARGET_X=mips-unknown-linux-gnu  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
       rust: nightly
       os: linux
       services:
@@ -591,31 +531,21 @@ matrix:
       os: osx
       osx_image: xcode10.1
 
-    - env: TARGET_X=armv7-linux-androideabi CC_X=arm-linux-androideabi-clang FEATURES_X= MODE_X=DEBUG KCOV=0
+    - env: TARGET_X=armv7-linux-androideabi  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: beta
       os: linux
       dist: trusty
       sudo: required
-      addons:
-        apt:
-          packages:
-            - expect
-            - openjdk-6-jre-headless
-          sources:
-            - ubuntu-toolchain-r-test
+      services:
+        - docker
 
-    - env: TARGET_X=armv7-linux-androideabi CC_X=arm-linux-androideabi-clang FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
+    - env: TARGET_X=armv7-linux-androideabi  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
       rust: beta
       os: linux
       dist: trusty
       sudo: required
-      addons:
-        apt:
-          packages:
-            - expect
-            - openjdk-6-jre-headless
-          sources:
-            - ubuntu-toolchain-r-test
+      services:
+        - docker
 
     - env: TARGET_X=x86_64-unknown-linux-gnu  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: beta
@@ -667,31 +597,21 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
 
-    - env: TARGET_X=aarch64-unknown-linux-gnu CC_X=aarch64-linux-gnu-gcc FEATURES_X= MODE_X=DEBUG KCOV=0
+    - env: TARGET_X=aarch64-unknown-linux-gnu  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: beta
       os: linux
       dist: trusty
       sudo: required
-      addons:
-        apt:
-          packages:
-            - gcc-aarch64-linux-gnu
-            - libc6-dev-arm64-cross
-          sources:
-            - ubuntu-toolchain-r-test
+      services:
+        - docker
 
-    - env: TARGET_X=aarch64-unknown-linux-gnu CC_X=aarch64-linux-gnu-gcc FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
+    - env: TARGET_X=aarch64-unknown-linux-gnu  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
       rust: beta
       os: linux
       dist: trusty
       sudo: required
-      addons:
-        apt:
-          packages:
-            - gcc-aarch64-linux-gnu
-            - libc6-dev-arm64-cross
-          sources:
-            - ubuntu-toolchain-r-test
+      services:
+        - docker
 
     - env: TARGET_X=i686-unknown-linux-gnu  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: beta
@@ -765,75 +685,65 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
 
-    - env: TARGET_X=arm-unknown-linux-gnueabihf CC_X=arm-linux-gnueabihf-gcc FEATURES_X= MODE_X=DEBUG KCOV=0
+    - env: TARGET_X=arm-unknown-linux-gnueabihf  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: beta
       os: linux
       dist: trusty
       sudo: required
-      addons:
-        apt:
-          packages:
-            - gcc-arm-linux-gnueabihf
-            - libc6-dev-armhf-cross
-          sources:
-            - ubuntu-toolchain-r-test
+      services:
+        - docker
 
-    - env: TARGET_X=arm-unknown-linux-gnueabihf CC_X=arm-linux-gnueabihf-gcc FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
+    - env: TARGET_X=arm-unknown-linux-gnueabihf  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
       rust: beta
       os: linux
       dist: trusty
       sudo: required
-      addons:
-        apt:
-          packages:
-            - gcc-arm-linux-gnueabihf
-            - libc6-dev-armhf-cross
-          sources:
-            - ubuntu-toolchain-r-test
+      services:
+        - docker
 
-    - env: TARGET_X=mips64-unknown-linux-gnuabi64 CC_X=mips64-linux-gnuabi64-gcc FEATURES_X= MODE_X=DEBUG KCOV=0
+    - env: TARGET_X=mips64-unknown-linux-gnuabi64  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: beta
       os: linux
       services:
         - docker
 
-    - env: TARGET_X=mips64-unknown-linux-gnuabi64 CC_X=mips64-linux-gnuabi64-gcc FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
+    - env: TARGET_X=mips64-unknown-linux-gnuabi64  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
       rust: beta
       os: linux
       services:
         - docker
 
-    - env: TARGET_X=mips64el-unknown-linux-gnuabi64 CC_X=mips64el-linux-gnuabi64-gcc  FEATURES_X= MODE_X=DEBUG KCOV=0
+    - env: TARGET_X=mips64el-unknown-linux-gnuabi64  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: beta
       os: linux
       services:
         - docker
 
-    - env: TARGET_X=mips64el-unknown-linux-gnuabi64 CC_X=mips64el-linux-gnuabi64-gcc  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
+    - env: TARGET_X=mips64el-unknown-linux-gnuabi64  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
       rust: beta
       os: linux
       services:
         - docker
 
-    - env: TARGET_X=mipsel-unknown-linux-gnu CC_X=mipsel-linux-gnu-gcc FEATURES_X= MODE_X=DEBUG KCOV=0
+    - env: TARGET_X=mipsel-unknown-linux-gnu  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: beta
       os: linux
       services:
         - docker
 
-    - env: TARGET_X=mipsel-unknown-linux-gnu CC_X=mipsel-linux-gnu-gcc FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
+    - env: TARGET_X=mipsel-unknown-linux-gnu  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
       rust: beta
       os: linux
       services:
         - docker
 
-    - env: TARGET_X=mips-unknown-linux-gnu CC_X=mips-linux-gnu-gcc FEATURES_X= MODE_X=DEBUG KCOV=0
+    - env: TARGET_X=mips-unknown-linux-gnu  FEATURES_X= MODE_X=DEBUG KCOV=0
       rust: beta
       os: linux
       services:
         - docker
 
-    - env: TARGET_X=mips-unknown-linux-gnu CC_X=mips-linux-gnu-gcc FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
+    - env: TARGET_X=mips-unknown-linux-gnu  FEATURES_X= MODE_X=RELWITHDEBINFO KCOV=0
       rust: beta
       os: linux
       services:

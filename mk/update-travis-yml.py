@@ -39,21 +39,13 @@ linux_compilers = [
 # Clang 3.4 and GCC 4.6 are already installed by default.
 linux_default_clang = "clang-3.4"
 
-osx_compilers = [
+default_compilers = [
      "", # Don't set CC.'
 ]
 
 compilers = {
-    "aarch64-unknown-linux-gnu" : [ "aarch64-linux-gnu-gcc" ],
-    "armv7-linux-androideabi" : [ "arm-linux-androideabi-clang" ],
-    "arm-unknown-linux-gnueabihf" : [ "arm-linux-gnueabihf-gcc" ],
-    "mips64-unknown-linux-gnuabi64" : [ "mips64-linux-gnuabi64-gcc" ],
-    "mips64el-unknown-linux-gnuabi64" : [ "mips64el-linux-gnuabi64-gcc "],
-    "mipsel-unknown-linux-gnu" : [ "mipsel-linux-gnu-gcc" ],
-    "mips-unknown-linux-gnu" : [ "mips-linux-gnu-gcc" ],
     "i686-unknown-linux-gnu" : linux_compilers,
     "x86_64-unknown-linux-gnu" : linux_compilers,
-    "x86_64-apple-darwin" : osx_compilers,
 }
 
 feature_sets = [
@@ -94,7 +86,7 @@ def format_entries():
                       for rust in rusts
                       for os in oss
                       for target in targets[os]
-                      for compiler in compilers[target]
+                      for compiler in compilers.get(target, default_compilers)
                       for mode in modes
                       for features in feature_sets])
 
@@ -213,16 +205,6 @@ def get_linux_packages_to_install(target, compiler, arch, kcov):
     else:
         packages = []
 
-    if target == "aarch64-unknown-linux-gnu":
-        packages += ["gcc-aarch64-linux-gnu",
-                     "libc6-dev-arm64-cross"]
-    if target == "arm-unknown-linux-gnueabihf":
-        packages += ["gcc-arm-linux-gnueabihf",
-                     "libc6-dev-armhf-cross"]
-    if target == "armv7-linux-androideabi":
-        packages += ["expect",
-                     "openjdk-6-jre-headless"]
-
     if arch == "i686":
         if kcov == True:
             packages += ["libcurl3:i386",
@@ -246,15 +228,11 @@ def get_linux_packages_to_install(target, compiler, arch, kcov):
                          "libelf-dev",
                          "libdw-dev",
                          "binutils-dev"]
-    elif arch not in ["aarch64", "arm", "armv7",
-                      "mips64", "mips64el",
-                      "mips", "mipsel"]:
-        raise ValueError("unexpected arch: %s" % arch)
 
     return packages
 
 def get_services_for_arch(arch):
-    if arch in ('mips64', 'mips64el', 'mips', 'mipsel'):
+    if arch not in ('i686', 'x86_64'):
         return ['docker']
     return []
 

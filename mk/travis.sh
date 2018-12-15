@@ -19,100 +19,34 @@ IFS=$'\n\t'
 
 printenv
 
-if [[ "$TARGET_X" = *"mips"* ]]; then
-  # Use cross on mips since trusty on travis doesn't have gcc-mips
+if [[ ! "$TARGET_X" =~ ^(x86_64-|i686-) ]]; then
   ! command -v cross 1>/dev/null && cargo install cross
   CARGO="cross"
 else
-  # On other targets we can use `cargo`
   CARGO="cargo"
-fi
 
-case $TARGET_X in
-aarch64-unknown-linux-gnu)
-  export QEMU_LD_PREFIX=/usr/aarch64-linux-gnu
-  ;;
-arm-unknown-linux-gnueabihf)
-  export QEMU_LD_PREFIX=/usr/arm-linux-gnueabihf
-  ;;
-mips-unknown-linux-gnu)
-  export QEMU_LD_PREFIX=/usr/mips-linux-gnu/
-  ;;
-mipsel-unknown-linux-gnu)
-  export QEMU_LD_PREFIX=/usr/mipsel-linux-gnu/
-  ;;
-mips64-unknown-linux-gnuabi64)
-  export QEMU_LD_PREFIX=/usr/mips64-linux-gnuabi64/
-  ;;
-mips64el-unknown-linux-gnuabi64)
-  export QEMU_LD_PREFIX=/usr/mips64el-linux-gnuabi64/
-  ;;
-armv7-linux-androideabi)
-  # install the android sdk/ndk
-  mk/travis-install-android.sh
-
-  export PATH=$HOME/android/android-18-arm-linux-androideabi-4.8/bin:$PATH
-  export PATH=$HOME/android/android-sdk-linux/platform-tools:$PATH
-  export PATH=$HOME/android/android-sdk-linux/tools:$PATH
-  ;;
-*)
-  ;;
-esac
-
-if [[ "$TARGET_X" =~ ^(arm|aarch64) && ! "$TARGET_X" =~ android ]]; then
-  # We need a newer QEMU than Travis has.
-  # sudo is needed until the PPA and its packages are whitelisted.
-  # See https://github.com/travis-ci/apt-source-whitelist/issues/271
-  sudo add-apt-repository ppa:pietro-monteiro/qemu-backport -y
-  sudo apt-get update -qq
-  sudo apt-get install --no-install-recommends binfmt-support qemu-user-binfmt -y
-fi
-
-if [[ ! "$TARGET_X" =~ "x86_64-" ]]; then
-  rustup target add "$TARGET_X"
-
-  # By default cargo/rustc seems to use cc for linking, We installed the
-  # multilib support that corresponds to $CC_X but unless cc happens to match
-  # $CC_X, that's not the right version. The symptom is a linker error
-  # where it fails to find -lgcc_s.
-  if [[ ! -z "${CC_X-}" ]]; then
-    mkdir .cargo
-    echo "[target.$TARGET_X]" > .cargo/config
-    echo "linker= \"$CC_X\"" >> .cargo/config
-    cat .cargo/config
-  fi
-fi
-
-if [[ "$CARGO" = 'cargo' ]]; then
   if [[ ! -z "${CC_X-}" ]]; then
     export CC=$CC_X
     $CC --version
   else
     cc --version
   fi
-fi
 
-cargo version
-rustc --version
+  cargo version
+  rustc --version
+
+  if [[ "$MODE_X" == "RELWITHDEBINFO" ]]; then
+    target_dir=target/$TARGET_X/release
+  else
+    target_dir=target/$TARGET_X/debug
+  fi
+fi
 
 if [[ "$MODE_X" == "RELWITHDEBINFO" ]]; then
   mode=--release
-  target_dir=target/$TARGET_X/release
-else
-  target_dir=target/$TARGET_X/debug
 fi
 
-case $TARGET_X in
-armv7-linux-androideabi)
-  $CARGO test -vv -j2 --no-run ${mode-} ${FEATURES_X-} --target=$TARGET_X
-  # TODO: There used to be some logic for running the tests here using the
-  # Android emulator. That was removed because something broke this. See
-  # https://github.com/briansmith/ring/issues/603.
-  ;;
-*)
-  $CARGO test -vv -j2 ${mode-} ${FEATURES_X-} --target=$TARGET_X
-  ;;
-esac
+$CARGO test -vv -j2 ${mode-} ${FEATURES_X-} --target=$TARGET_X
 
 if [[ "$KCOV" == "1" ]]; then
   # kcov reports coverage as a percentage of code *linked into the executable*
